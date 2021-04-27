@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+
+
+
+
+
+<!--
+**************** Movimientos*******************
+-->        
+    
+        
+    <record model="ir.ui.view" id="view_mov_vehiculos_form">
+        <field name="name">mov_vehiculos.form</field>
+        <field name="model">mov_vehiculos</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Movimientos de Vehículos">
+                <header>
+                    <button name ='solicitar' string="Solicitar Movimiento de Vehículos" type='object' state='1' attrs="{'invisible':['|',('state','!=','1')]}" />
+                     <!-- <button name ='mover' string="Realizar Movimiento de Bienes" type='object' state='2' groups="group_movimientos_registrador_clasificador" 
+                                           attrs="{'invisible':['|',('state','!=','2')]}"  /> -->
+                     <button name ='mover' string="Realizar Movimiento de Vehículos" type='object' groups="movimientos.group_movimientos_registrador_clasificador"/>
+                    <field name= 'state' widget = "statusbar" />
+                    
+                    
+                </header>
+                                
+                        <group col="6" colspan="2"> 
+                         <separator string='Informacion del Movimiento' colspan="4"/> 
+                          <newline/>
+                            <field name="tipo_movimiento_id" colspan="1" select="0" attrs="{'readonly':[('state','=','3')]}" options="{'no_open':True}"/>
+                            <field name="movimiento_codigo" style="width:16%" select="0" attrs="{'readonly':True}"/> 
+                            <field name="fecha_mov" select="0" attrs="{'readonly':[('state','=','3')]}"/>
+                        </group>     
+                           
+
+                        <group col="6"  colspan="2">
+                            <field name="bienes_regiones_id_receptora" select="0" attrs="{'required':[('movimiento_codigo','in',('01','02','03'))],
+                                                       'invisible': [('movimiento_codigo','in',('04','05','06','07','08'))],'readonly':[('state','=','3')]}" options="{'no_open':True}" />
+             
+                              <field name="bienes_sedes_id_receptora" select="0" attrs="{'required':[('movimiento_codigo','in',('01','02','03'))],
+                                                       'invisible': [('movimiento_codigo','in',('04','05','06','07','08'))],'readonly':[('state','=','3')]}" options="{'no_open':True}" />
+             
+
+                             <field name="ofi_receptora" select="0" attrs="{'required':[('movimiento_codigo','in',('01','02','03'))],
+                                                       'invisible': [('movimiento_codigo','in',('04','05','06','07','08'))],'readonly':[('state','=','3')]}" options="{'no_open':True}" />
+  
+                        </group>               
+                        <group col="6" colspan="2">
+                            <field name="resp_uso_receptor" select="0" attrs="{'required':[('movimiento_codigo','in',('01','02','03'))],
+                                                       'invisible': [('movimiento_codigo','in',('04','05','06','07','08'))],'readonly':[('state','=','3')]}" options="{'no_open':True}" style="width:80%" />
+                           
+                            <field name="ente_externo_id" select="0" attrs="{'invisible': [('movimiento_codigo','!=','04'),('movimiento_codigo','!=','07')],'readonly':[('state','=','3')]}"   options="{'no_open':True}"/>       
+                            <field name="analista_bienes" select="0" attrs="{'readonly':[('state','=','3')]}" options="{'no_open':True}"/>
+                        </group>    
+
+                     
+                           <group col="6" colspan="2">
+                            <field name="nro_acta"  select="0" attrs= "{'readonly':[('state','=','3')]}" />
+                            <field name="fecha_acta" select="0" attrs="{ 'readonly':[('state','=','3')]}"  />
+                          
+                            <field name="observacion" select="0" attrs="{'readonly':[('state','=','3')]}"/> 
+                          
+                               
+                        </group>          
+                        
+
+                       <hr style="width:100%; border-color:  #cadff6  ;"> </hr>
+                       <group col="4" colspan="2">
+
+                            <separator string='Informacion del Bien' colspan="4"/>
+                            <newline/>
+                              <field name="bienes_regiones_id_cedente"   
+                             style="width:50%"  select="1" attrs="{'readonly':[('state','=','3')]}" options="{'no_open':True}"/>
+
+                            <field name="bienes_sedes_id_cedente"   
+                             style="width:50%"  select="1" attrs="{'readonly':[('state','=','3')]}" options="{'no_open':True}"/>
+
+
+                            <field name="oficina_cedente"   
+                             style="width:50%"  select="1" attrs="{'readonly':[('state','=','3')]}" options="{'no_open':True}"/>
+                           
+                             <field name="bienes_resp_uso_cedente"   
+                             style="width:50%"  select="1" attrs="{'readonly':[('state','=','3')]}" options="{'no_open':True}"/>
+             
+                           <group col="4" >
+                                                    
+                                <field name="vehiculos_mov_deta_ids" context="{'oficina': oficina_cedente}" select="1" colspan="2" attrs="{'readonly':[('state','=','3')]}" style="width:300%">
+                                <tree editable="True">
+                                    <field name="bienes_id" domain= "[('bienes_oficinas_id','=','oficina')]" context="{'tree_view_ref':'bienes_vehiculos.view_custom_m2o_bienes_vehiculos_tree'}" options="{'no_create': True}"/>
+                                    <field name="bi_nombre"/>
+                                    <field name="bi_fecha_inv"/>
+                                    <field name="bi_placas"/>
+                               
+
+                                </tree>
+                            </field>        
+                           </group>         
+                          
+                        </group>  
+                         
+                         <!--   
+                            <field name="bi_oficina_cedente"  domain = "[(('movimiento_id.cod_mov','!=','01'),('oficinas','=','bienes_id.oficinas_id')('movimiento_id.cod_mov','=','01'),('oficinas','=','13'))]" colspan="2" options="{'no_open':True}" select="0"/>
+                            <field name="bi_nombre"  colspan="4" attrs="{'invisible':True}" select="0"/>
+                          <field name="bi_resp_uso_cedente" colspan="4" options="{'no_open':True}" select="0"/>
+                            <field name="bi_fecha_inv" select="0"/> -->
+<!--
+                <field name="mov_apro_id"/>
+                 <field name="resp_uso_receptor" attrs="{'required': [('movimiento_codigo'),'in',('01','02','03','04','10','11','12')]}" select="0"/>
+                  <field name="ofi_receptora" attrs="{'required':['|', ('movimiento_codigo','=','01'),('movimiento_codigo','=','02'),
+                                   ('movimiento_codigo','=','03'),('movimiento_codigo','=','04'),('movimiento_codigo','=','10'),
+                                   ('movimiento_codigo','=','11'),('movimiento_codigo','=','12')]}" select="0"/>
+-->
+           
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_mov_vehiculos_tree">
+        <field name="name">mov_vehiculos.tree</field>
+        <field name="model">mov_vehiculos</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Movimientos de Bienes">
+                <field name="tipo_movimiento_id"/>
+                 <field name="movimiento_codigo"/>
+                 <field name="ofi_receptora" select="0" attrs="{'required':[('movimiento_codigo','in',('01','02','03'))],
+                                                       'invisible': [('movimiento_codigo','in',('04','05','06','07','08'))],'readonly':[('state','=','3')]}" options="{'no_open':True}" />
+             
+                            <field name="resp_uso_receptor" select="0" attrs="{'required':[('movimiento_codigo','in',('01','02','03'))],
+                                                       'invisible': [('movimiento_codigo','in',('04','05','06','07','08'))],'readonly':[('state','=','3')]}" options="{'no_open':True}" />
+                           
+                            <field name="ente_externo_id" select="0" attrs="{'invisible': [('movimiento_codigo','!=','04'),('movimiento_codigo','!=','07')],'readonly':[('state','=','3')]}"   options="{'no_open':True}"/>       
+                <field name="vehiculos_mov_deta_ids"/>
+                <field name="state"/>
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_mov_vehiculos">
+        <field name="name">Movimiento de Vehículos</field>
+        <field name="res_model">mov_vehiculos</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   
+
+    
+
+
+
+
+
+<!--
+**************************************Menues********************************
+ -->
+      <menuitem name="Movimientos de Vehiculos" id="menu_pmv"  web_icon="movimientos,static/description/intercambio-vehiculos.png"/>
+        
+            <menuitem name="Registro de Movimientos de Vehículos" id="menu_mov_vehiculos"  parent="menu_pmv" action="action_mov_vehiculos"/>
+             <!-- <menuitem name="Detalle de Varios Movimientos" id="menu_mov_deta_varios"  parent="menu_reg_movimiento" action="action_mov_deta_varios"/>-->
+          
+
+
+        
+</data>
+</odoo>

@@ -1,0 +1,57 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+
+"acces_movimientos_registrador_clasificador","movimientos_registrador_clasificador","model_movimientos","group_movimientos_registrador_clasificador",1,1,1,0
+
+"acces_bienes_mov_deta_rel_registrador_clasificador", "bienes_mov_deta_rel_registrador_clasificador","model_bienes_mov_deta_rel","group_movimientos_registrador_clasificador",1,1,1,0
+
+
+"acces_movimientos_direccion","movimientos_direccion","model_movimientos","group_movimientos_direccion",1,1,1,1
+"acces_bienes_mov_deta_rel_direccion","bienes_mov_deta_rel_direccion","model_bienes_mov_deta_rel","group_movimientos_direccion",1,1,1,1
+
+
+"acces_movimientos_registra_directivos","movimientos_registra_directivos","model_movimientos","group_movimientos_registra_directivos",1,1,1,0
+
+"acces_bienes_mov_deta_rel_registra_directivos", "bienes_mov_deta_rel_registra_directivos","model_bienes_mov_deta_rel","group_movimientos_registra_directivos",1,0,1,0
+
+
+"acces_movimientos_registradores","movimientos_registradores","model_movimientos","group_movimientos_registradores",1,0,1,0
+
+"acces_bienes_mov_deta_rel_registradores","bienes_mov_deta_rel_registradores","model_bienes_mov_deta_rel","group_movimientos_registradores",1,0,1,0
+
+
+
+
+"acces_mov_vehiculos_consulta","mov_vehiculos_consulta","model_mov_vehiculos","group_movimientos_consulta",1,0,0,0
+
+"acces_vehiculos_mov_deta_rel_consulta","vehiculos_mov_deta_rel_consulta","model_vehiculos_mov_deta_rel","group_movimientos_consulta",1,0,0,0
+
+
+"acces_mov_vehiculos_registrador_clasificador","mov_vehiculos_registrador_clasificador","model_mov_vehiculos","group_movimientos_registrador_clasificador",1,1,1,0
+
+"acces_vehiculos_mov_deta_rel_registrador_clasificador", "vehiculos_mov_deta_rel_registrador_clasificador","model_vehiculos_mov_deta_rel","group_movimientos_registrador_clasificador",1,1,1,0
+
+
+"acces_mov_vehiculos_direccion","mov_vehiculos_direccion","model_mov_vehiculos","group_movimientos_direccion",1,1,1,1
+"acces_vehiculos_mov_deta_rel_rel_direccion", "vehiculos_mov_deta_rel_direccion","model_vehiculos_mov_deta_rel","group_movimientos_direccion",1,1,1,1
+
+
+"acces_mov_vehiculos_registra_directivos","mov_vehiculos_registra_directivos","model_mov_vehiculos","group_movimientos_registra_directivos",1,1,1,0
+"acces_vehiculos_mov_deta_rel_registra_directivos", "vehiculos_mov_deta_rel_registra_directivos","model_vehiculos_mov_deta_rel","group_movimientos_registra_directivos",1,0,1,0
+
+
+"acces_mov_vehiculos_registradores","mov_vehiculos_registradores","model_mov_vehiculos","group_movimientos_registradores",1,0,1,0
+"acces_vehiculos_mov_deta_rel_registradores", "vehiculos_mov_deta_rel_registradores","model_vehiculos_mov_deta_rel","group_movimientos_registradores",1,0,1,0
+
+
+"acces_mov_vehiculos_consulta","mov_vehiculos_consulta","model_mov_vehiculos","group_movimientos_consulta",1,0,0,0
+"acces_vehiculos_mov_deta_rel_consulta", "vehiculos_mov_deta_rel_consulta","model_vehiculos_mov_deta_rel","group_movimientos_consulta",1,0,0,0
+
+
+
+
+
+
+
+
+
+

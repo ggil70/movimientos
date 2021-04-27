@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+		   <record id="tipo_movimiento_1" model="tipo_movimiento">
+			<field name="cod_mov">01</field>
+			<field name="nom_mov">Reasignacion</field>
+		</record>
+		<record id="tipo_movimiento_2" model="tipo_movimiento">
+			<field name="cod_mov">02</field>
+			<field name="nom_mov">Retiro</field>
+		</record>
+		<record id="tipo_movimiento_3" model="tipo_movimiento">
+			<field name="cod_mov">03</field>
+			<field name="nom_mov">Prestacion </field>
+		</record>
+		<record id="tipo_movimiento_4" model="tipo_movimiento">
+			<field name="cod_mov">04</field>
+			<field name="nom_mov">Desincorporacion por Donacion</field>
+		</record>
+		<record id="tipo_movimiento_5" model="tipo_movimiento">
+			<field name="cod_mov">05</field>
+			<field name="nom_mov">Desincorporacion por Inservibilidad (Deterioro)</field>
+		</record>
+		<record id="tipo_movimiento_6" model="tipo_movimiento">
+			<field name="cod_mov">06</field>
+			<field name="nom_mov">Desincorporacion por Faltantes</field>
+		</record>
+		<record id="tipo_movimiento_7" model="tipo_movimiento">
+			<field name="cod_mov">07</field>
+			<field name="nom_mov">Desincorporacion por Transferencia</field>
+		</record>
+		<record id="tipo_movimiento_8" model="tipo_movimiento">
+			<field name="cod_mov">08</field>
+			<field name="nom_mov">Desincorporacion por Permuta</field>
+		</record>
+		<record id="tipo_movimiento_9" model="tipo_movimiento">
+			<field name="cod_mov">09</field>
+			<field name="nom_mov">Inventario Inicial</field>
+		</record>        
+		
+		
+	</data>
+</odoo>
+
+
+

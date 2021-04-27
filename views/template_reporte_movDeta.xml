@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<template id="movimientos.detalle_mov" name="Reporte del Movimiento">
+			<t t-call="report.html_container">
+					<t t-foreach="docs" t-as="o">
+						 <t t-call="report.external_layout">
+						 	 <div class="page">
+						 	 	<h2>Movimiento de Bienes <span t-esc="now"></span></h2>
+						 	<table class="table table-stripped">
+						 		<tbody>
+
+						 			<tr>
+						 				<td><d>Nombre del Movimiento</d></td>
+						 				<td> <span t-field="o.tipo_movimiento_id"/></td>
+									
+									</tr>
+
+							 		<tr>
+							 			<td><d>Fecha del Movimiento</d></td>
+										<td> <span t-field="o.fecha_mov"/></td>
+									</tr>
+								
+									<table  width="100%" style="border: 1px solid black; border-collapse:collapse">
+									<tr>
+										
+									<tr>
+						       			 <td width="25%" style="border: 1px solid black; border-collapse:collapse; border-top:0">
+						            	 &amp;nbsp;<small>Región Receptora:</small>
+						        		 </td>
+						       			 <td width="25%" style="border: 1px solid black; border-top:0">
+						            	 &amp;nbsp;<span t-field="o.bienes_regiones_id_receptora"/>
+						       			 </td>
+						  			    				        
+						    		</tr>
+
+											<tr>
+								 			 <td height="5px" style="border: 1px solid black; 	border-bottom:0">
+						                 		&amp;nbsp;<small><b>Sede Receptora</b></small>
+						    			 	</td>
+						    			 	</tr>
+										
+										</tr>
+
+										<tr>
+								 		 
+												<td> <span t-field="o.bienes_sedes_id_receptora"/>
+											</td>
+										</tr>
+
+
+										<tr>
+								 		 <td><d>Oficina Receptora</d></td>
+												<td> <span t-field="o.ofi_receptora"/></td>
+										</tr>
+										<tr>	
+ 						 				  <td><d>Responsable de uso Receptor</d></td>
+										  <td> <span t-field="o.resp_uso_receptor"/></td>
+										</tr>	
+										<tr>
+								 		  <td><d>Oficina Cedente</d></td>
+								 		 <td><span t-field="o.oficina_cedente"/></td>
+								 		</tr>	
+								 	
+ 						</table>
+
+									<t t-call="movimientos.detalle_mov_bienes"/>
+						 	 			
+						 	 	</tbody>
+					 	 </table>
+					 	 		<h4>Aprobacion de Movimiento de Bienes <span t-esc="now"></span></h4>	
+					 	 		<br></br>
+					 	 		<br></br>
+								<table border="0" style="border-collapse:collapse;color:000000;width:100%" cellpadding="3" cellspacing="3">
+    								<tr>
+        								<td  class="text-center" >________________________</td>
+        								<td  class="text-center" >________________________</td>
+        								<td  class="text-center" >________________________</td>
+    								</tr>
+    								<tr >
+         							<td class="text-center" >
+             							<strong>Responsable de uso Cedente</strong>
+         							</td>
+     								<td class="text-center" >
+          								<strong>Responsable de uso Receptor</strong>
+      								</td>
+      								<td class="text-center" >
+          								<strong>Unidad Bienes Nacionales</strong>
+      								</td>
+                            
+     								</tr>
+								</table>
+
+					 	 	</div>
+						</t>
+					</t>
+			</t>		
+	</template>
+	<template id="movimientos.detalle_mov_bienes" name="Bienes a Mover">
+		<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th> Bienes</th>
+				</tr>
+			</thead>		
+				</table>
+				<table border="0" style="width:100%">
+					<thead>
+						<tr>
+							<th><d>Numero del Bien</d></th>
+							<th><d>Descripcion</d></th>
+							<th><d>    Serial del Bien</d></th>
+						</tr>	
+				
+					</thead>	
+					<tbody>
+						<t t-foreach="o.bienes_mov_deta_ids" t-as="bienes_mov_deta_rel">
+							<tr>
+					
+								<td>
+									<t	t-esc = "bienes_mov_deta_rel.bienes_id.bienes_numbien"/></td>	
+								<td style="text-align:justify;"> <t  t-esc = "bienes_mov_deta_rel.bi_nombre"/></td>
+								<td style="text-align:center;"> 	<t	t-esc = "bienes_mov_deta_rel.bi_serial"/></td>
+    
+					
+				
+
+							</tr>
+						</t> 
+
+					</tbody>
+
+				</table>
+	</template>
+
+
+
+
+	</data>
+</odoo>
+
+
+<!-- tr>
+						 				<td><d>Oficina Receptora</d></td>
+										<td> <span t-field="o.ofi_receptora"/></td>
+									</tr>
+									<tr>	
+						 				<td><d>Responsable de uso Receptor</d></td>
+										<td> <span t-field="o.resp_uso_receptor"/></td>
+									</tr>
+									<tr>
+						 				<td><d>Numero del Bien</d></td>
+						 				<td> <span t-field="o.bienes_ids"/></td>
+						 			</tr>
+						 			<tr>
+						 				
+						 				<td> <span t-field="o.bi_nombre"/></td>
+						 			</tr>	
+						 			<tr>
+						 				<td><d>Oficina Cedente</d></td>
+						 				<td><span t-field="o.bi_oficina_cedente"/></td>
+						 			</tr>	
+						 			<tr>
+							 			
+							 			<td><span t-field="o.bi_resp_uso_cedente"/></td>
+							 		</tr> 			 -->

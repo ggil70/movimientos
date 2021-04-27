@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <data>
+      <record id="wkf_mov_deta" model="workflow">
+        <field name="name">movimientos.basic</field>
+         <field name="osv">object.name</field>
+         <field name="on_create">True</field>
+      </record>
+    </data>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+<!--
+****************Tipos de Movimientos*******************
+-->
+
+ <record model="ir.ui.view" id="view_tipo_movimiento_form">
+        <field name="name">tipo_movimiento.form</field>
+        <field name="model">tipo_movimiento</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Tipo de Movimientos">
+                <sheet>
+                    <notebook>
+                        <page string="Tipos de Movimientos">       
+                            <group col="4" colspan="2">                
+                                <field name="nom_mov" select="2"/>
+                                <field name="cod_mov" select="2"/>
+                            </group>
+                         </page>
+                     </notebook>       
+                 </sheet>    
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tipo_movimiento_tree">
+        <field name="name">tipo_movimiento.tree</field>
+        <field name="model">tipo_movimiento</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Tipos de Movimientos">
+                <field name="nom_mov"/>
+                <field name="cod_mov"/>
+            </tree>
+        </field>
+    </record>
+
+</data>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<report	
+			id="report.detmov_report"
+			string="Reporte de Movimiento"
+			model="movimientos"
+			report_type ="qweb-pdf"
+			file="movimientos.detalle_mov"
+			name="movimientos.detalle_mov"
+			menu="True">
+		</report>
+	</data>
+</odoo>

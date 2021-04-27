@@ -1,0 +1,384 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+<!--
+****************Tipos de Movimientos*******************
+-->
+    <record model="ir.ui.view" id="view_movimiento_form">
+        <field name="name">movimiento.form</field>
+        <field name="model">movimiento</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="movimiento">
+                <sheet>
+                    <notebook>
+                        <page string="Tipos de Movimientos">       
+                            <group col="4" colspan="2">                
+                 
+                                <field name="nom_mov" select="2"/>
+                                <field name="cod_mov" select="2"/>
+            
+                            </group>
+                         </page>
+                     </notebook>       
+                 </sheet>    
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_movimiento_tree">
+        <field name="name">movimiento.tree</field>
+        <field name="model">movimiento</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="movimiento">
+                <field name="nom_mov"/>
+                <field name="cod_mov"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_movimiento">
+        <field name="name">Movimiento</field>
+        <field name="res_model">movimiento</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+
+<!--
+****************Pesonal que Autoriza los Movimientos*******************
+
+    <record model="ir.ui.view" id="view_mov_autoriza_form">
+        <field name="name">mov_autoriza.form</field>
+        <field name="model">mov_autoriza</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="mov_autoriza">
+            <group col="4" colspan="2">
+                <field name="autoriza_grupo" select="2"/>
+                <field name="autoriza_persona" select="2"/>
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_mov_autoriza_tree">
+        <field name="name">mov_autoriza.tree</field>
+        <field name="model">mov_autoriza</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="mov_autoriza">
+                <field name="autoriza_grupo"/>
+                <field name="autoriza_persona"/>
+                
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_mov_autoriza">
+        <field name="name">Personal que Autoriza los Movimientos</field>
+        <field name="res_model">mov_autoriza</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+ -->   
+<!--
+****************Ente Externo*******************
+-->
+    <record model="ir.ui.view" id="view_ente_externo_form">
+        <field name="name">ente_externo.form</field>
+        <field name="model">ente_externo</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="ente_externo">
+            <group col="4" colspan="2">
+                <field name= "ente_externo_rif" select="2"/>
+                <field name= "ente_externo_cedula" select="2"/>
+                <field name= "ente_externo_nombre" select="2"/>
+                <field name= "ente_externo_telf" select="2"/>
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_ente_externo_tree">
+        <field name="name">ente_externo.tree</field>
+        <field name="model">ente_externo</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="ente_externo">
+                <field name= "ente_externo_rif"/>
+                <field name= "ente_externo_nombre"/>
+                <field name= "ente_externo_cedula"/>
+                <field name= "ente_externo_telf"/>
+                <field name= "ente_externo_correo"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ente_externo">
+        <field name="name">Ente Externo</field>
+        <field name="res_model">ente_externo</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+
+
+
+
+<!--
+****************Detalle de los  Movimientos*******************
+-->        
+    
+        
+    <record model="ir.ui.view" id="view_mov_deta_form">
+        <field name="name">mov_deta.form</field>
+        <field name="model">mov_deta</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Detalle de los Movimientos">
+                <header>
+                    <button name ='mover' string="Realizar Movimiento de Bienes" type='object' state='2' attrs="{'invisible':['|',('state','!=','2')]}" />
+                    <field name= 'state' widget = "statusbar" />
+                    
+                    
+                </header>
+                                
+                        <group col="6">
+                         <separator string='Informacion del Movimiento' colspan="4"/> 
+                          <newline/>
+                            <field name="movimiento_id" colspan="1" select="0"/>
+                            <field name="movimiento_codigo" style="width:16%" select="0"/> 
+                            <field name="fecha_mov" select="0"/>
+                            <field name="ofi_receptora" attrs="{'required':[('movimiento_codigo','in',('01','02','04','10','11','12'))],'invisible': [('movimiento_codigo','in',('05','06','07','08','09'))]}" select="0"/>
+             
+                            <field name="resp_uso_receptor" attrs="{'required':[('movimiento_codigo','in',('01','02','04','10','11','12'))],'invisible': [('movimiento_codigo','in',('05','06','07','08','09'))]}" select="0"/>
+                            <field name="ente_externo_id" attrs="{'invisible': [('movimiento_codigo','!=','05') ,('movimiento_codigo','!=','08')]}"/>       
+                            <field name="nro_acta"  attrs="{'invisible': [('movimiento_codigo','=','01')]}"/>
+                            <field name="fecha_acta" attrs="{'invisible': [('movimiento_codigo','=','01')]}"/>
+                            <field name="analista_bienes" select="0"/>
+                            <field name="observacion" select="0"/>
+                           
+                            
+                        </group>                    
+                        <group col="6" >
+                         <separator string='Informacion del Bien' colspan="4"/>
+                            <newline/>
+                            <field name="bienes_ids"  edit="top" 
+                                colspan="2" select="0"/>
+                            <field name="bi_nombre"  colspan="4" attrs="{'invisible':True}" select="0"/>
+                            <newline/>
+                            <field name="bi_oficina_cedente"  domain = "[(('movimiento_id.cod_mov','!=','01'),('oficinas','=','bienes_id.oficinas_id')('movimiento_id.cod_mov','=','01'),('oficinas','=','13'))]" colspan="2" options="{'no_open':True}" select="0"/>
+                            <field name="bi_resp_uso_cedente" colspan="4" options="{'no_open':True}" select="0"/>
+                            <field name="bi_fecha_inv" select="0"/>
+<!--
+                <field name="mov_apro_id"/>
+                 <field name="resp_uso_receptor" attrs="{'required': [('movimiento_codigo'),'in',('01','02','03','04','10','11','12')]}" select="0"/>
+                  <field name="ofi_receptora" attrs="{'required':['|', ('movimiento_codigo','=','01'),('movimiento_codigo','=','02'),
+                                   ('movimiento_codigo','=','03'),('movimiento_codigo','=','04'),('movimiento_codigo','=','10'),
+                                   ('movimiento_codigo','=','11'),('movimiento_codigo','=','12')]}" select="0"/>
+-->
+                        </group>
+           
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_mov_deta_tree">
+        <field name="name">mov_deta.tree</field>
+        <field name="model">mov_deta</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="mov_deta">
+                <field name="bienes_ids"/>
+                <field name="bi_nombre"/>
+                <field name="bi_oficina_cedente"/>
+                <field name="bi_resp_uso_cedente"/>
+                <field name="ofi_receptora"/>
+                <field name="movimiento_id"/>
+                <field name="fecha_mov"/>
+                <!-- <field name="analista_autoriza"/> -->
+                <field name="analista_bienes"/>
+            
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_mov_deta">
+        <field name="name">Detalle de Movimientos</field>
+        <field name="res_model">mov_deta</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   
+
+<!-- 
+
+****************Detalle de Varios  Movimientos *******************
+-->        
+    
+        
+    <!-- <record model="ir.ui.view" id="view_mov_deta_varios_form">
+        <field name="name">mov_deta_varios.form</field>
+        <field name="model">mov_deta_varios</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Detalle de Varios Movimientos">
+                <header>
+                    <button name ='mover' string="Realizar Movimiento de Bienes" type='object' state='2' attrs="{'invisible':['|',('state','!=','2')]}" />
+                    <field name= 'state' widget = "statusbar" />
+                    
+                    
+                </header>
+                                
+                        <group col="6">
+                         <separator string='Informacion del Movimiento' colspan="4"/> 
+                          <newline/>
+                            <field name="movimiento_id" colspan="1" select="0"/>
+                            <field name="movimiento_codigo" style="width:16%" select="0"/> 
+                            <field name="fecha_mov" select="0"/>
+                            <field name="ofi_receptora" attrs="{'required':[('movimiento_codigo','in',('01','02','04','10','11','12'))],'invisible': [('movimiento_codigo','in',('05','06','07','08','09'))]}" select="0"/>
+             
+                            <field name="resp_uso_receptor" attrs="{'required':[('movimiento_codigo','in',('01','02','04','10','11','12'))],'invisible': [('movimiento_codigo','in',('05','06','07','08','09'))]}" select="0"/>
+                            <field name="ente_externo_id" attrs="{'invisible': [('movimiento_codigo','!=','05') ,('movimiento_codigo','!=','08')]}"/>       
+                            <field name="nro_acta"  attrs="{'invisible': [('movimiento_codigo','=','01')]}"/>
+                            <field name="fecha_acta" attrs="{'invisible': [('movimiento_codigo','=','01')]}"/>
+                            <field name="analista_bienes" select="0"/>
+                            <field name="observacion" select="0"/>
+                           
+                            
+                        </group>                    
+                        <group col="6" >
+                         <separator string='Informacion del Bien' colspan="4"/>
+                            <newline/>
+                            <field name="bienes_ids"  colspan="2" select="0"/>
+                            <field name="bi_nombre"  colspan="4" attrs="{'invisible':True}" select="0"/>
+                            <newline/>
+                            <field name="bi_oficina_cedente"  domain = "[(('movimiento_id.cod_mov','!=','01'),('oficinas','=','bienes_id.oficinas_id')('movimiento_id.cod_mov','=','01'),('oficinas','=','13'))]" colspan="2" options="{'no_open':True}" select="0"/>
+                            <field name="bi_resp_uso_cedente" colspan="4" options="{'no_open':True}" select="0"/>
+                            <field name="bi_fecha_inv" select="0"/>
+
+                <field name="mov_apro_id"/>
+                 <field name="resp_uso_receptor" attrs="{'required': [('movimiento_codigo'),'in',('01','02','03','04','10','11','12')]}" select="0"/>
+                  <field name="ofi_receptora" attrs="{'required':['|', ('movimiento_codigo','=','01'),('movimiento_codigo','=','02'),
+                                   ('movimiento_codigo','=','03'),('movimiento_codigo','=','04'),('movimiento_codigo','=','10'),
+                                   ('movimiento_codigo','=','11'),('movimiento_codigo','=','12')]}" select="0"/>
+
+                        </group>
+           
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_mov_deta_varios_tree">
+        <field name="name">mov_deta_varios.tree</field>
+        <field name="model">mov_deta_varios</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="mov_deta">
+                <field name="bienes_ids"/>
+                <field name="bi_nombre"/>
+                <field name="bi_oficina_cedente"/>
+                <field name="bi_resp_uso_cedente"/>
+                <field name="ofi_receptora"/>
+                <field name="movimiento_id"/>
+                <field name="fecha_mov"/>
+                <field name="analista_bienes"/>
+            
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_mov_deta_varios">
+        <field name="name">Detalle de Movimientos</field>
+        <field name="res_model">mov_deta_varios</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   
+
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+<!--
+****************Aprobacion de Movimientos*******************
+
+
+    <record model="ir.ui.view" id="view_mov_apro_form">
+        <field name="name">mov_apro.form</field>
+        <field name="model">mov_apro</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="mov_apro">
+            <group col="2">
+                <field name="fecha_apro" select="2"/>
+                <field name="analis_apro" select="2"/>
+            </group>   
+             <separator string='Movimientos a Aprobar' colspan="4"/> 
+                <field name="mov_deta_ids" select="2" nolabel="1"/>
+
+                
+
+                <button name ='aprobar' string="Aprobacion de Bienes" state = '1' type='object'/>
+
+                  
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_mov_apro_tree">
+        <field name="name">mov_apro.tree</field>
+        <field name="model">mov_apro</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="mov_apro">
+                <field name="fecha_apro"/>
+                <field name="analis_apro"/>
+                <field name="mov_deta_ids"/>
+                
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_mov_apro">
+        <field name="name">Aprobacion de los Movimientos</field>
+        <field name="res_model">mov_apro</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+**************************************Menues********************************
+ -->
+      <menuitem name="Movimientos de Bienes Publicos" id="menu_pm"/>
+            <menuitem name="Registro de Movimientos de Bienes Publicos" id="menu_reg_movimiento" parent="menu_pm"/>
+            <menuitem name="Movimientos" id="menu_movimiento" parent="menu_reg_movimiento" action="action_movimiento"/>
+            <!-- <menuitem name="Personal que Autoriza los Movimientos" id="menu_mov_autoriza" parent="menu_reg_movimiento" action="action_mov_autoriza"/ -->
+            <menuitem name="Entes Externos" id="menu_ente_externo"  parent="menu_reg_movimiento" action="action_ente_externo"/>
+            <menuitem name="Detalle de Movimientos" id="menu_mov_deta"  parent="menu_reg_movimiento" action="action_mov_deta"/>
+             <!-- <menuitem name="Detalle de Varios Movimientos" id="menu_mov_deta_varios"  parent="menu_reg_movimiento" action="action_mov_deta_varios"/>-->
+          
+
+
+        
+</data>
+</odoo>

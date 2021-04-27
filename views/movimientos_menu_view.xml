@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+
+
+<!--
+**************** Action Tipos de Movimientos*******************
+-->
+
+    <record model="ir.actions.act_window" id="action_tipo_movimiento">
+        <field name="name">Tipo Movimiento</field>
+        <field name="res_model">tipo_movimiento</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--
+****************Ente Externo*******************
+-->
+    <record model="ir.actions.act_window" id="action_ente_externo">
+        <field name="name">Ente Externo</field>
+        <field name="res_model">ente_externo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+<!--
+**************** Reasignacion Movimiento Movimientos*******************
+-->        
+   <record model="ir.actions.act_window" id="action_reasignación_movimientos">
+        <field name="name">Movimiento de Bienes</field>
+        <field name="res_model">movimientos</field>
+         <field name="domain">[('id','!=',0)]</field>                     
+         <field name = "context">
+              {'readonly_by_pass': ['bi_nombre','bi_serial','bi_fecha_inv','bi_oficina_cedente','bi_resp_uso_cedente']}
+        </field>
+        <field name="view_mode">tree,form</field>
+   </record>
+
+
+
+<!--
+**************** Desincorporacion Movimientos*******************
+-->  
+
+<!--    
+   <record model="ir.actions.act_window" id="action_desincorporacion_movimientos">
+        <field name="name">Desincorporación Movimientos</field>
+        <field name="res_model">movimientos</field>
+        <field name="domain">[('categoria_movimiento_id','=','03')]</field>
+                               
+         <field name = "context">
+              {'readonly_by_pass': ['bi_nombre','bi_serial','bi_fecha_inv','bi_oficina_cedente','bi_resp_uso_cedente']}
+        </field>
+        <field name="view_mode">tree,form</field>
+   </record>
+-->   
+
+
+<!--
+**************************************Menues********************************
+ -->
+      <menuitem name="Movimientos de Bienes Publicos" id="menu_pm"  web_icon="movimientos,static/description/intercambio-bienes.png"/>
+
+            <menuitem name="Registro de Movimientos de Bienes Publicos" id="menu_reg_movimiento" parent="menu_pm"/>
+
+            <menuitem name="Tipo de Movimientos" id="menu_movimiento" parent="menu_reg_movimiento" action="action_tipo_movimiento"/>
+            <menuitem name="Entes Externos" id="menu_ente_externo"  parent="menu_reg_movimiento" action="action_ente_externo"/>
+            <menuitem name="Movimiento de Bienes" id="menu_reasignacion_bienes"  parent="menu_reg_movimiento" action="action_reasignación_movimientos"/>
+ <!--           <menuitem name="Desincorporación de Bienes" id="menu_desincorporacion_bienes"  parent="menu_reg_movimiento" action="action_desincorporacion_movimientos"/>-->
+
+<!--            
+            <menuitem name="Registro de Movimientos" id="menu_movimientos"  parent="menu_reg_movimiento" action="action_movimientos"/>
+-->
+          
+
+
+        
+</data>
+</odoo>

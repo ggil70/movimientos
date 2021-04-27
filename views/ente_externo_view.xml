@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+
+
+<!--
+****************Ente Externo*******************
+-->
+    <record model="ir.ui.view" id="view_ente_externo_form">
+        <field name="name">ente_externo.form</field>
+        <field name="model">ente_externo</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="ente_externo">
+            <group col="4" colspan="2">
+                <field name= "ente_externo_rif" select="2"/>
+                <field name= "ente_externo_nombre" select="2"/>
+                <field name= "ente_externo_cedula" select="2"/>
+                <field name= "ente_externo_funcionario" select="2"/>
+                <field name= "ente_externo_telf" select="2"/>
+                <field name= "ente_externo_correo" select="2"/>
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_ente_externo_tree">
+        <field name="name">ente_externo.tree</field>
+        <field name="model">ente_externo</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="ente_externo">
+                <field name= "ente_externo_rif"/>
+                <field name= "ente_externo_nombre"/>
+                <field name= "ente_externo_cedula"/>
+                <field name= "ente_externo_funcionario"/>
+                <field name= "ente_externo_telf"/>
+                <field name= "ente_externo_correo"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ente_externo">
+        <field name="name">Ente Externo</field>
+        <field name="res_model">ente_externo</field>
+     
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+</data>
+</odoo>

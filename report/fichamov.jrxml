@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 3.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fichamov" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="movimientos"/>
+	<property name="OPENERP_RELATIONS" value="bienes_mov_deta_ids"/>
+	<queryString language="xPath">
+		<![CDATA[/data/record]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="id"/>
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="Last_Modified_on-__last_update" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Last_Modified_on-__last_update"/>
+		<fieldDescription><![CDATA[Last_Modified_on-__last_update]]></fieldDescription>
+	</field>
+	<field name="Created_on-create_date" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Created_on-create_date"/>
+		<fieldDescription><![CDATA[Created_on-create_date]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Display_Name-display_name"/>
+		<fieldDescription><![CDATA[Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Fecha_del_Acta-fecha_acta" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Fecha_del_Acta-fecha_acta"/>
+		<fieldDescription><![CDATA[Fecha_del_Acta-fecha_acta]]></fieldDescription>
+	</field>
+	<field name="Fecha_del_Movimiento-fecha_mov" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Fecha_del_Movimiento-fecha_mov"/>
+		<fieldDescription><![CDATA[Fecha_del_Movimiento-fecha_mov]]></fieldDescription>
+	</field>
+	<field name="ID-id" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="ID-id"/>
+		<fieldDescription><![CDATA[ID-id]]></fieldDescription>
+	</field>
+	<field name="Codigo_del_Movimiento-movimiento_codigo" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Codigo_del_Movimiento-movimiento_codigo"/>
+		<fieldDescription><![CDATA[Codigo_del_Movimiento-movimiento_codigo]]></fieldDescription>
+	</field>
+	<field name="Acta_del_Movimiento-nro_acta" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Acta_del_Movimiento-nro_acta"/>
+		<fieldDescription><![CDATA[Acta_del_Movimiento-nro_acta]]></fieldDescription>
+	</field>
+	<field name="Observacion-observacion" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Observacion-observacion"/>
+		<fieldDescription><![CDATA[Observacion-observacion]]></fieldDescription>
+	</field>
+	<field name="Estado-state" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Estado-state"/>
+		<fieldDescription><![CDATA[Estado-state]]></fieldDescription>
+	</field>
+	<field name="Last_Updated_on-write_date" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Last_Updated_on-write_date"/>
+		<fieldDescription><![CDATA[Last_Updated_on-write_date]]></fieldDescription>
+	</field>
+	<field name="Nombre_de_la_Region-regiones_nombre" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Regiones_de_Ubicacion_de_la_Sede-bienes_regiones_id_cedente/Nombre_de_la_Region-regiones_nombre"/>
+		<fieldDescription><![CDATA[Regiones_de_Ubicacion_de_la_Sede-bienes_regiones_id_cedente/Nombre_de_la_Region-regiones_nombre]]></fieldDescription>
+	</field>
+	<field name="Nombre_de_la_Sede-sedes_nombre" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Sedes_del_Ministerio-bienes_sedes_id_cedente/Nombre_de_la_Sede-sedes_nombre"/>
+		<fieldDescription><![CDATA[Sedes_del_Ministerio-bienes_sedes_id_cedente/Nombre_de_la_Sede-sedes_nombre]]></fieldDescription>
+	</field>
+	<field name="Nombre_de_la_Sede-sedes_nombre_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Sedes_del_Ministerio-bienes_sedes_id_receptora/Nombre_de_la_Sede-sedes_nombre"/>
+		<fieldDescription><![CDATA[Sedes_del_Ministerio-bienes_sedes_id_receptora/Nombre_de_la_Sede-sedes_nombre]]></fieldDescription>
+	</field>
+	<field name="Nombre_de_la_Oficina-oficinas_nombre" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Oficina_Receptora-ofi_receptora/Nombre_de_la_Oficina-oficinas_nombre"/>
+		<fieldDescription><![CDATA[Oficina_Receptora-ofi_receptora/Nombre_de_la_Oficina-oficinas_nombre]]></fieldDescription>
+	</field>
+	<field name="Nombre_del_Movimiento-nom_mov" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Nombre_del_Movimiento-tipo_movimiento_id/Nombre_del_Movimiento-nom_mov"/>
+		<fieldDescription><![CDATA[Nombre_del_Movimiento-tipo_movimiento_id/Nombre_del_Movimiento-nom_mov]]></fieldDescription>
+	</field>
+	<field name="Primer_Nombre-personas_pnombre" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Responsable_de_uso_Receptor-resp_uso_receptor/Primer_Nombre-personas_pnombre"/>
+		<fieldDescription><![CDATA[Responsable_de_uso_Receptor-resp_uso_receptor/Primer_Nombre-personas_pnombre]]></fieldDescription>
+	</field>
+	<field name="Primer_Apellido-personas_papellido" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Responsable_de_uso_Receptor-resp_uso_receptor/Primer_Apellido-personas_papellido"/>
+		<fieldDescription><![CDATA[Responsable_de_uso_Receptor-resp_uso_receptor/Primer_Apellido-personas_papellido]]></fieldDescription>
+	</field>
+	<field name="Numero_del_Bien-bienes_numbien" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Bienes-bienes_mov_deta_ids/Numero_del_Bien-bienes_id/Numero_del_Bien-bienes_numbien"/>
+		<fieldDescription><![CDATA[Bienes-bienes_mov_deta_ids/Numero_del_Bien-bienes_id/Numero_del_Bien-bienes_numbien]]></fieldDescription>
+	</field>
+	<field name="Descripcion_del_Bien-bienes_nombre" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Bienes-bienes_mov_deta_ids/Numero_del_Bien-bienes_id/Descripcion_del_Bien-bienes_nombre"/>
+		<fieldDescription><![CDATA[Bienes-bienes_mov_deta_ids/Numero_del_Bien-bienes_id/Descripcion_del_Bien-bienes_nombre]]></fieldDescription>
+	</field>
+	<field name="Serial_del_Bien-bienes_serial" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Bienes-bienes_mov_deta_ids/Numero_del_Bien-bienes_id/Serial_del_Bien-bienes_serial"/>
+		<fieldDescription><![CDATA[Bienes-bienes_mov_deta_ids/Numero_del_Bien-bienes_id/Serial_del_Bien-bienes_serial]]></fieldDescription>
+	</field>
+	<field name="Nombre_del_Ente_Externo-ente_externo_nombre" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Ente_Externo-ente_externo_id/Nombre_del_Ente_Externo-ente_externo_nombre"/>
+		<fieldDescription><![CDATA[Ente_Externo-ente_externo_id/Nombre_del_Ente_Externo-ente_externo_nombre]]></fieldDescription>
+	</field>
+	<field name="Nombre_de_la_Region-regiones_nombre_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Regiones_de_Ubicacion_de_la_Sede-bienes_regiones_id_cedente/Nombre_de_la_Region-regiones_nombre"/>
+		<fieldDescription><![CDATA[Regiones_de_Ubicacion_de_la_Sede-bienes_regiones_id_cedente/Nombre_de_la_Region-regiones_nombre]]></fieldDescription>
+	</field>
+	<field name="Primer_Nombre-personas_pnombre_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Responsable_de_Uso_Cedente-bienes_resp_uso_cedente/Primer_Nombre-personas_pnombre"/>
+		<fieldDescription><![CDATA[Responsable_de_Uso_Cedente-bienes_resp_uso_cedente/Primer_Nombre-personas_pnombre]]></fieldDescription>
+	</field>
+	<field name="Primer_Apellido-personas_papellido_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Responsable_de_Uso_Cedente-bienes_resp_uso_cedente/Primer_Apellido-personas_papellido"/>
+		<fieldDescription><![CDATA[Responsable_de_Uso_Cedente-bienes_resp_uso_cedente/Primer_Apellido-personas_papellido]]></fieldDescription>
+	</field>
+	<field name="Nombre_de_la_Oficina-oficinas_nombre_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Oficina_Cedente-oficina_cedente/Nombre_de_la_Oficina-oficinas_nombre"/>
+		<fieldDescription><![CDATA[Oficina_Cedente-oficina_cedente/Nombre_de_la_Oficina-oficinas_nombre]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<pageHeader>
+		<band height="75">
+			<image scaleImage="RealSize" hAlign="Left" vAlign="Middle">
+				<reportElement x="10" y="0" width="430" height="50"/>
+				<imageExpression class="java.lang.String"><![CDATA["/opt/odoo/addons/registrogil1/logo/logoP.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="220" y="50" width="150" height="20">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ca5c20b-ee52-4ba6-b922-0e8e7ed83e74"/>
+				</reportElement>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MOVIMIENTO DE BIENES]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="273">
+			<textField>
+				<reportElement x="138" y="8" width="100" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_del_Movimiento-nom_mov}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="8" width="121" height="30"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre del Movimiento]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="9" width="100" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Fecha_del_Movimiento-fecha_mov}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="257" y="9" width="121" height="30"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha del Movimiento]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="42" width="570" height="1"/>
+				<graphicElement>
+					<pen lineColor="#C6C4F2"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="8" y="48" width="62" height="30"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Región Receptora]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="76" y="48" width="100" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_de_la_Region-regiones_nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="254" y="48" width="100" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_de_la_Sede-sedes_nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="184" y="48" width="66" height="30"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sede Receptora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="48" width="76" height="30"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Oficina Receptora]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="448" y="48" width="122" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_de_la_Oficina-oficinas_nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="84" width="102" height="30">
+					<printWhenExpression><![CDATA[$F{Primer_Nombre-personas_pnombre}.length() >0]]></printWhenExpression>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsable de Uso Receptor]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="118" y="85" width="236" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Primer_Nombre-personas_pnombre}+" "+$F{Primer_Apellido-personas_papellido}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="5" y="151" width="570" height="1"/>
+				<graphicElement>
+					<pen lineColor="#C6C4F2"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="255" y="158" width="100" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_de_la_Sede-sedes_nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="185" y="158" width="66" height="30"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sede Cedente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="158" width="62" height="30"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Región Cedente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="369" y="158" width="76" height="30"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Oficina Cedente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="191" width="102" height="30"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsable de Uso Cedente]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="77" y="158" width="100" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_de_la_Region-regiones_nombre_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="226" width="570" height="1"/>
+				<graphicElement>
+					<pen lineColor="#C6C4F2"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="15" y="230" width="223" height="15"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Información de los Bienes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="253" width="107" height="15"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número del Bien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="253" width="153" height="15"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción del Bien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="83" width="72" height="30">
+					<printWhenExpression><![CDATA[$F{Nombre_del_Ente_Externo-ente_externo_nombre}.length() >0]]></printWhenExpression>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ente Receptor]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="453" y="83" width="100" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_del_Ente_Externo-ente_externo_nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="124" y="188" width="356" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Primer_Nombre-personas_pnombre_1}+
+" "+$F{Primer_Apellido-personas_papellido_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="381" y="253" width="153" height="15"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serial del Bien]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="450" y="158" width="112" height="30"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_de_la_Oficina-oficinas_nombre_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43">
+			<textField>
+				<reportElement x="5" y="7" width="100" height="30">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a5f1e98f-931f-40bd-84a3-63276c119431"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Numero_del_Bien-bienes_numbien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="130" y="7" width="248" height="30">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="af606975-d43d-4779-8ec0-6bb1be896ca0"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Numero_del_Bien-bienes_numbien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="7" width="100" height="30">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73f24392-4219-4dac-8378-1325de4ee8e1"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Serial_del_Bien-bienes_serial}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="102">
+			<staticText>
+				<reportElement x="3" y="19" width="272" height="13"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aprobación del Movimiento de los Bienes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="70" width="170" height="20"/>
+				<box topPadding="3" leftPadding="3">
+					<topPen lineWidth="1.5"/>
+				</box>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsable de uso Cedente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="70" width="170" height="20"/>
+				<box topPadding="3">
+					<topPen lineWidth="1.25"/>
+				</box>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsable de uso Receptor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="413" y="69" width="149" height="21"/>
+				<box topPadding="3">
+					<topPen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bienes Nacionales]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="10" width="570" height="1"/>
+				<graphicElement>
+					<pen lineColor="#C6C4F2"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
