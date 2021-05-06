@@ -76,113 +76,82 @@ class verificar_id_movimiento(models.Model):
 
 #****************Detalle de los  Movimientos*******************#
 
-
-
-
-
-
 class bienes_mov_deta_rel(models.Model):
-        #_inherit ='bienes'
-        """Registra el detalle de los movimientos"""
-        _name = 'bienes_mov_deta_rel'
-        _rec_name = 'bienes_id'
-        #global res
-        #res = ()
-        movimiento_id = fields.Many2one('movimientos','Nombre del Movimiento', help='Registra el codigo de Vinculacion con los Tipos de Movimientos ',
-                        required=True)
-        bi_bienes_sedes_id  = fields.Many2one('sedes','Sedes', help='Registra el Codigo de Vinculacion con las Sedes del Ministerio')
-        bi_bienes_regiones_id  = fields.Many2one('regiones','Regiones',size=3, help='Regiones de Ubicación de la Sede')    
-        bi_oficina_cedente = fields.Many2one('oficinas','Oficina Cedente')
-        bi_resp_uso_cedente = fields.Many2one('personas','Responsable de Uso Cedente')
-        
-        rece_regiones_id  = fields.Many2one('regiones','Regiones')     
-        rece_sedes_id  = fields.Many2one('sedes','Sedes')
-        rece_oficina = fields.Many2one('oficinas','Oficina Cedente')
-        rece_resp_uso = fields.Many2one('personas','Responsable de Uso Cedente')
+    #_inherit ='bienes'
+    """Registra el detalle de los movimientos"""
+    _name = 'bienes_mov_deta_rel'
+    _rec_name = 'bienes_id'
+    #global res
+    #res = ()
+    movimiento_id = fields.Many2one('movimientos','Nombre del Movimiento', help='Registra el codigo de Vinculacion con los Tipos de Movimientos ',
+                    required=True)
+    bi_bienes_sedes_id  = fields.Many2one('sedes','Sedes', help='Registra el Codigo de Vinculacion con las Sedes del Ministerio')
+    bi_bienes_regiones_id  = fields.Many2one('regiones','Regiones',size=3, help='Regiones de Ubicación de la Sede')    
+    bi_oficina_cedente = fields.Many2one('oficinas','Oficina Cedente')
+    bi_resp_uso_cedente = fields.Many2one('personas','Responsable de Uso Cedente')
+    
+    rece_regiones_id  = fields.Many2one('regiones','Regiones')     
+    rece_sedes_id  = fields.Many2one('sedes','Sedes')
+    rece_oficina = fields.Many2one('oficinas','Oficina Cedente')
+    rece_resp_uso = fields.Many2one('personas','Responsable de Uso Cedente')
 
-        bi_ente_externo_id = fields.Many2one('ente_externo','Ente Externo')
-        bi_ente_externo_responsable = fields.Char('Responsable del Ente',size=50)
-        
-        bienes_id = fields.Many2one('bienes','Numero del Bien', help='Registra el Numero de Bien')
+    bi_ente_externo_id = fields.Many2one('ente_externo','Ente Externo')
+    bi_ente_externo_responsable = fields.Char('Responsable del Ente',size=50)
+    
+    bienes_id = fields.Many2one('bienes','Numero del Bien', help='Registra el Numero de Bien')
 
-        bi_nombre = fields.Text('Descripcion del Bien', help='Descripcion del Bien')
-        bi_serial = fields.Char('Serial del Bien', help='Registra el Numero de Serial del Bien Nacional')
-        bi_fecha_inv = fields.Date('Fecha del Ultimo Movimiento del Bien')
-        bi_fecha_inv_final = fields.Date('Fecha de desincorporacion de la oficina')
-        
-        bi_tipo_estatus_inventario_id = fields.Many2one('tipo_estatus_inventario','Estatus de Inventario del Bien')
-        bi_tipo_movimiento_id = fields.Many2one('tipo_movimiento','Estatus de Inventario del Bien')
-        
+    bi_nombre = fields.Text('Descripcion del Bien', help='Descripcion del Bien')
+    bi_serial = fields.Char('Serial del Bien', help='Registra el Numero de Serial del Bien Nacional')
+    bi_fecha_inv = fields.Date('Fecha del Ultimo Movimiento del Bien')
+    bi_fecha_inv_final = fields.Date('Fecha de desincorporacion de la oficina')
+    
+    bi_tipo_estatus_inventario_id = fields.Many2one('tipo_estatus_inventario','Estatus de Inventario del Bien')
+    bi_tipo_movimiento_id = fields.Many2one('tipo_movimiento','Estatus de Inventario del Bien')
+    _sql_constraints = [('bienes_mov_deta_ids', 'UNIQUE(movimiento_id,bienes_id)', 'El bien ya esta registrado en este movimiento!')] 
 
-        _sql_constraints = [('bienes_mov_deta_ids', 'UNIQUE(movimiento_id,bienes_id)', 'El bien ya esta registrado en este movimiento!')] 
+  
+    @api.model
+    def default_get(self, fields_list):
+        res = super(bienes_mov_deta_rel, self).default_get(fields_list)
+        return res
+         
+  
+    @api.onchange('movimiento_id.fecha_mov')
+    def validar_fecha(self):
+       if  self.movimiento_id.fecha_mov < self.bi_fecha_inv:
+            raise ValidationError (
+                "Error ! No puedes crear registros en donde la fecha del movimiento %s sea menor a la fecha del inventario" % (self.fecha_mov)
+            )
 
-      
-        @api.model
-        def default_get(self, fields_list):
-            res = super(bienes_mov_deta_rel, self).default_get(fields_list)
-            
-            return res
-             
-      
-        @api.onchange('movimiento_id.fecha_mov')
-        def validar_fecha(self):
-           if  self.movimiento_id.fecha_mov < self.bi_fecha_inv:
-                raise ValidationError (
-                    "Error ! No puedes crear registros en donde la fecha del movimiento %s sea menor a la fecha del inventario" % (self.fecha_mov)
-                )
-
-        
-
-
-        @api.onchange('bienes_id')
-        def generar_bien(self):
-            if self.bienes_id:
-                domain = [('usuario_movi_id','=',self.env.user.id),('activo_oficina','=',1)]
-                recordset= self.env['verificar_id_movimiento'].search(domain)
-                nro = len(recordset)
-                oficina = 0
-                if nro > 0:
-                    for registro in recordset:
-                        oficina = registro.oficina_cede
-                
-                    domain_aux = [('bienes_numbien','=',self.bienes_id.bienes_numbien)]
-                    recordset_aux= self.env['bienes'].search(domain_aux)
-                    nro_aux = len(recordset_aux)
-                    if nro_aux > 0:
-                        oficina_bien = 0
-                        for registro_aux in recordset_aux:
-                            oficina_bien = registro_aux.bienes_oficinas_id.id
-                            oficina_nombre_bien = registro_aux.bienes_oficinas_id.oficinas_nombre
-                            nro_bien = registro_aux.bienes_numbien
-                            nombre = registro_aux.bienes_nombre
-                            
-                            
-                        if oficina_bien == oficina:  
-                            self.bi_nombre = self.bienes_id.bienes_nombre
-                            self.bi_bienes_regiones_id  = self.bienes_id.bienes_regiones_id
-                            self.bi_bienes_sedes_id = self.bienes_id.bienes_sedes_id
-                            self.bi_oficina_cedente = self.bienes_id.bienes_oficinas_id
-                            self.bi_resp_uso_cedente  = self.bienes_id.resp_uso_id
-                            self.bi_serial = self.bienes_id.bienes_serial
-                            self.bi_fecha_inv =  self.bienes_id.fech_inventario
-                            self.bi_tipo_estatus_inventario_id = self.bienes_id.tipo_estatus_inventario_id
-                        else:
-                            raise ValidationError("El Bien ["+ str(nro_bien) + "] [" + str(nombre) + "] esta asociado a la oficina [" + str(oficina_nombre_bien) + "] la cual es diferente a la Oficina cedente Seleccionada.")   
+    @api.onchange('bienes_id')
+    def generar_bien(self):
+        if self.bienes_id:
+            oficina_mov = self.movimiento_id.oficina_cedente.id
+            domain_bien = [('bienes_numbien','=',self.bienes_id.bienes_numbien)]
+            recordset_bien= self.env['bienes'].search(domain_bien)
+            cantidad_bien = len(recordset_bien)
+            if cantidad_bien > 0:
+                oficina_bien = 0
+                for registro_bien in recordset_bien:
+                    oficina_bien = registro_bien.bienes_oficinas_id.id
+                    oficina_nombre_bien = registro_bien.bienes_oficinas_id.oficinas_nombre
+                    nro_bien = registro_bien.bienes_numbien
+                    nombre = registro_bien.bienes_nombre
+                        
+                if oficina_bien == oficina_mov:  
+                    self.bi_nombre = self.bienes_id.bienes_nombre
+                    self.bi_bienes_regiones_id  = self.bienes_id.bienes_regiones_id
+                    self.bi_bienes_sedes_id = self.bienes_id.bienes_sedes_id
+                    self.bi_oficina_cedente = self.bienes_id.bienes_oficinas_id
+                    self.bi_resp_uso_cedente  = self.bienes_id.resp_uso_id
+                    self.bi_serial = self.bienes_id.bienes_serial
+                    self.bi_fecha_inv =  self.bienes_id.fech_inventario
+                    self.bi_tipo_estatus_inventario_id = self.bienes_id.tipo_estatus_inventario_id
+                else:
+                    raise ValidationError("El Bien ["+ str(nro_bien) + "] [" + str(nombre) + "] esta asociado a la oficina [" + str(oficina_nombre_bien) + "] la cual es diferente a la Oficina cedente Seleccionada.")   
                 
                 
     
-
-
-
-
-
-
-
-
-
-
-
-
 class movimientos(models.Model):
     #_inherit ='bienes'
     """Registra los movimientos"""
@@ -245,11 +214,6 @@ class movimientos(models.Model):
 
     @api.onchange('bienes_regiones_id_receptora')
     def onchange_bienes_regiones_id_receptora(self):
-        codigor= ''
-        codigor = self.bienes_regiones_id_receptora.regiones_codigo
-        self.bienes_regiones_codigo_receptora =  codigor
-        
-        
         self.bienes_sedes_id_receptora = ''
         self.ofi_receptora = ''
         self.resp_uso_receptor = ''
@@ -259,10 +223,6 @@ class movimientos(models.Model):
 
     @api.onchange('bienes_sedes_id_receptora')
     def onchange_bienes_sedes_id_receptora(self):
-        codigor= ''
-        codigor = self.bienes_sedes_id_receptora.sedes_codigo
-        self.bienes_sedes_codigo_receptora =  codigor
-
         self.ofi_receptora = ''
         self.resp_uso_receptor = ''
         self.ubica_id_receptor = ''
@@ -271,26 +231,9 @@ class movimientos(models.Model):
 
     @api.onchange('ofi_receptora')
     def onchange_ofi_receptora(self):
-        codigor= ''
-        codigor = self.ofi_receptora.oficinas_codigo
-        self.ofi_codigo_receptora =  codigor
-        
         self.resp_uso_receptor = ''
         self.ubica_id_receptor = ''
 
-
-    @api.onchange('resp_uso_receptor')
-    def onchange_resp_uso_receptor(self):
-        codigor= ''
-        codigor = self.resp_uso_receptor.personas_cedula
-        self.cedu_resp_uso_receptor =  codigor
-
-    @api.onchange('ubica_id_receptor')
-    def onchange_ubica_id_receptor(self):
-        codigor= ''
-        codigor = self.ubica_id_receptor.ubicacion_fisica_codigo
-        self.ubica_codigo_receptor =  codigor
-   
 
     @api.onchange('bienes_regiones_id_cedente')
     def onchange_bienes_regiones_id_cedente(self):
@@ -300,22 +243,19 @@ class movimientos(models.Model):
         
     @api.onchange('bienes_sedes_id_cedente')
     def onchange_bienes_sedes_id_cedente(self):
-        
         self.oficina_cedente = ''
         #raise ValidationError('Pasos')
         self.bienes_resp_uso_cedente = ''
         
     @api.onchange('oficna_cedente')
-    def onchange_bienes_regiones_id_cedente(self):
+    def onchange_bienes_oficina_cedente(self):
         self.bienes_resp_uso_cedente = ''
         
 
-   
     #@api.model
     #def default_get(self, field_list):
         #res = super(movimientos, self).default_get(field_list)
         #res['tipo_movimiento_id'] = 1
-        #res['movimiento_codigo'] = '01'
         #return res
    
    
@@ -346,33 +286,6 @@ class movimientos(models.Model):
      
     
 
-
-    @api.onchange('oficina_cedente')
-    def onchange_oficina_cedente(self):
-        
-        
-        if self.oficina_cedente.id:
-            #Verificar que no se encuentre ya y este activa
-            oficina = self.oficina_cedente.id
-            domain = [('usuario_movi_id','=',self.env.user.id),('oficina_cede','=',oficina)]            
-            recordset= self.env['verificar_id_movimiento'].search(domain)
-            nro = len(recordset)
-            
-            domain = [('usuario_movi_id','=',self.env.user.id)]            
-            recordset_aux= self.env['verificar_id_movimiento'].search(domain)
-            for registro_aux in recordset_aux:
-                registro_aux.write({'activo_oficina':0})
-                
-            if nro == 1:
-                for registro in recordset:    
-                    registro.write({'activo_oficina':1})
-            else:    
-                diccionario = {'usuario_movi_id':self.env.user.id, 'oficina_cede':oficina}
-                registro = self.env['verificar_id_movimiento'].create(diccionario)                         
-
-
-
-    
     def mover(self):
         if self.bienes_mov_deta_ids:
             self.state = '3'
@@ -479,7 +392,7 @@ class movimientos(models.Model):
                                         'tipo_estatus_inventario_id':3,
                                         'cod_estatus':'03',
                                         'movimiento_deta_id':registro.id,
-                                        'active':False
+                                        'sw_desincorporado':1
                                      
                     })
                 mensaje = "El / Los Bienes fueron inventariado correctamente"  
@@ -496,6 +409,30 @@ class movimientos(models.Model):
 
 
 
+
+    """
+    @api.onchange('oficina_cedente')
+    def onchange_oficina_cedente(self):
+        if self.oficina_cedente.id:
+            #Verificar que no se encuentre ya y este activa
+            oficina = self.oficina_cedente.id
+            domain = [('usuario_movi_id','=',self.env.user.id),('oficina_cede','=',oficina)]            
+            recordset= self.env['verificar_id_movimiento'].search(domain)
+            nro = len(recordset)
+            
+            domain = [('usuario_movi_id','=',self.env.user.id)]            
+            recordset_aux= self.env['verificar_id_movimiento'].search(domain)
+            for registro_aux in recordset_aux:
+                registro_aux.write({'activo_oficina':0})
+                
+            if nro == 1:
+                for registro in recordset:    
+                    registro.write({'activo_oficina':1})
+            else:    
+                diccionario = {'usuario_movi_id':self.env.user.id, 'oficina_cede':oficina}
+                registro = self.env['verificar_id_movimiento'].create(diccionario)                         
+
+    """
 
 
 
