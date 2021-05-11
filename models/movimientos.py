@@ -218,21 +218,42 @@ class movimientos(models.Model):
         self.ofi_receptora = ''
         self.resp_uso_receptor = ''
         self.ubica_id_receptor = ''
+        self.bienes_regiones_codigo_receptora = self.bienes_regiones_id_receptora.regiones_codigo
+        self.bienes_sedes_codigo_receptora = ''
+        self.ofi_codigo_receptora = ''
+        self.cedu_resp_uso_receptor = ''
+        self.ubica_codigo_receptor = ''
         
         
-
     @api.onchange('bienes_sedes_id_receptora')
     def onchange_bienes_sedes_id_receptora(self):
         self.ofi_receptora = ''
         self.resp_uso_receptor = ''
         self.ubica_id_receptor = ''
-
+        self.bienes_sedes_codigo_receptora = self.bienes_sedes_id_receptora.sedes_codigo
+        self.ofi_codigo_receptora = ''
+        self.cedu_resp_uso_receptor = ''
+        self.ubica_codigo_receptor = ''
 
 
     @api.onchange('ofi_receptora')
     def onchange_ofi_receptora(self):
         self.resp_uso_receptor = ''
         self.ubica_id_receptor = ''
+        self.ofi_codigo_receptora = self.ofi_receptora.oficinas_codigo
+        self.cedu_resp_uso_receptor = ''
+        self.ubica_codigo_receptor = ''
+        
+
+    @api.onchange('resp_uso_receptor')
+    def onchange_resp_uso_id_receptor(self):
+        self.cedu_resp_uso_receptor = self.resp_uso_receptor.personas_cedula
+
+    @api.onchange('ubica_id_receptor')
+    def onchange_ubica_id_receptor_id(self):
+        self.ubica_codigo_receptor = self.ubica_id_receptor.ubicacion_fisica_codigo
+
+        
 
 
     @api.onchange('bienes_regiones_id_cedente')
@@ -247,7 +268,7 @@ class movimientos(models.Model):
         #raise ValidationError('Pasos')
         self.bienes_resp_uso_cedente = ''
         
-    @api.onchange('oficna_cedente')
+    @api.onchange('oficina_cedente')
     def onchange_bienes_oficina_cedente(self):
         self.bienes_resp_uso_cedente = ''
         
@@ -338,6 +359,8 @@ class movimientos(models.Model):
                                         'bienes_oficinas_codigo':self.ofi_codigo_receptora,
                                         'resp_uso_id':self.resp_uso_receptor,
                                         'cedu_resp_uso':self.cedu_resp_uso_receptor,
+                                        'bienes_ubica_id':self.ubica_id_receptor,
+                                        'ubicacion_fisica_codigo':self.ubica_codigo_receptor,
                                         'movimiento_deta_id':registro.id
                                      
                     })
