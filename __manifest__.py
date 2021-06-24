@@ -42,7 +42,10 @@
                          'data/tipos_movimientos.xml',
 
                          #'views/template_reporte_movDeta.xml',                       
-                         #'report/report_movdeta.xml',
+                         'report/bien_encabezado_movimiento_template.xml',
+                         'report/acta_movimiento_detalle_template.xml',
+                         
+                         
                          'security/ir.model.access.csv'],
         "installable": True
 }

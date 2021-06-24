@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+<template id="bien_encabezado_reporte">
+        <div style="text-align:left">
+            <span style="font-weight:700"><small>FECHA: </small></span><small t-esc="date_today"/>
+        </div> 
+        <br/>       
+        <div style="text-align:center">
+            <span style="font-weight:700; font-size:16px" t-esc="titulo"/>
+        </div>
+        <table style="border:1px solid black; width:100%">
+        <tr>
+            <td style="border:1px solid black; height:20px">
+                <span style="font-size:14px; font-weight:700; margin-left:1px">CONSULTA: </span>
+                <span t-esc="consulta" style="font-size:14px; margin-left:2px "/>
+            </td>
+        </tr>
+        </table>
+</template>
+
+
+
+
+<template id="encabezado_acta_movimiento">
+   <div>    
+        <span style="font-weight:700"><small>FECHA: </small></span> <small t-esc="movimiento.fecha_actual()"></small>
+        <!--<br/>-->
+    </div> 
+    
+    <!-- Titulo del reporte -->   
+    <div style="text-align:center">
+        <span style="font-weight:700; font-size:14px">ACTA DE MOVIMIENTO DE BIENES</span>
+        <br/>
+    </div>
+    
+    
+    <table style="border:1px solid black; width:100%">
+    <tr style=" height:30px" align="center">
+        <td style="border:1px solid black; width:15%" >
+            <span style="font-size:12px; font-weight:700;">Fecha Movimiento </span>
+        </td>
+        
+        <td style="border:1px solid black; width:75%" >
+            <span style="font-size:12px; font-weight:700;">Tipo Movimiento </span>
+        </td>
+    </tr>
+    
+    <tr style=" height:30px" align="center">
+        <td style="border:1px solid black; width:15%" >
+            <!--<span style="font-size:12px;" t-esc="movimiento.fecha_mov" />-->
+            <span style="font-size:12px;" t-esc="movimiento.fecha_formato(movimiento.fecha_mov)" />
+        </td>
+        
+        <td style="border:1px solid black; width:75%" >
+            <span style="font-size:12px;" t-esc="movimiento.tipo_movimiento_id.nom_mov" />
+        </td>
+    </tr>
+    
+    
+    
+    <tr>
+        <td style="width:100%; background-color:#d3d3d3; text-align:center" colspan="2">
+            <span style="font-size:14px; font-weight:700; margin-left:3px">Receptor </span>
+        </td>
+    </tr>    
+    </table>  
+
+    <table style="border:1px solid black; width:100%">
+    <tr style=" height:30px" align="center">
+        <td style="border:1px solid black; width:30%" >
+            <span style="font-size:12px; font-weight:700;">Sede </span>
+        </td>
+        <td style="border:1px solid black; width:50%" >
+            <span style="font-size:12px; font-weight:700;">Oficina </span>
+        </td>
+        <td style="border:1px solid black; width:20%" >
+            <span style="font-size:12px; font-weight:700;">Responsble de uso </span>
+        </td>
+    </tr>    
+    <tr style=" height:30px" align="center">
+        <td style="border:1px solid black; width:30%" >
+            <span style="font-size:12px;" t-esc="movimiento.bienes_sedes_id_receptora.sedes_nombre" />
+        </td>
+        <td style="border:1px solid black; width:50%" >
+            <span style="font-size:12px;" t-esc="movimiento.ofi_receptora.oficinas_nombre" />
+        </td>
+        <td style="border:1px solid black; width:20%" >
+            <span style="font-size:12px;" t-esc="movimiento.resp_uso_receptor.personas_pnombre"/><span style="font-size:12px;"> </span>
+            <span style="font-size:12px;" t-esc="movimiento.resp_uso_receptor.personas_papellido"/>
+        </td>
+    </tr>  
+    <tr>
+        <td style="width:100%; background-color:#d3d3d3; text-align:center" colspan="3">
+            <span style="font-size:14px; font-weight:700; margin-left:3px">Cedente </span>
+        </td>
+    </tr>
+    </table>
+
+    <table style="border:1px solid black; width:100%">
+    <tr style=" height:30px" align="center">
+        <td style="border:1px solid black; width:30%" >
+            <span style="font-size:12px; font-weight:700;">Sede </span>
+        </td>
+        <td style="border:1px solid black; width:50%" >
+            <span style="font-size:12px; font-weight:700;">Oficina </span>
+        </td>
+        <td style="border:1px solid black; width:20%" >
+            <span style="font-size:12px; font-weight:700;">Responsble de uso </span>
+        </td>
+    </tr>    
+    <tr style=" height:30px" align="center">
+        <td style="border:1px solid black; width:30%" >
+            <span style="font-size:12px;" t-esc="movimiento.bienes_sedes_id_cedente.sedes_nombre" />
+        </td>
+        <td style="border:1px solid black; width:50%" >
+            <span style="font-size:12px;" t-esc="movimiento.oficina_cedente.oficinas_nombre" />
+        </td>
+        <td style="border:1px solid black; width:20%" >
+            <span style="font-size:12px;" t-esc="movimiento.bienes_resp_uso_cedente.personas_pnombre"/><span style="font-size:12px;"> </span>
+            <span style="font-size:12px;" t-esc="movimiento.bienes_resp_uso_cedente.personas_papellido"/>
+        </td>
+    </tr>  
+    </table>
+
+    
+    <div style="text-align:center">
+        <br/>
+        <span style="font-weight:700; font-size:14px">INFORMACIÓN DE LOS BIENES </span>
+        <br/>
+    </div>
+
+
+</template>
+
+
+
+
+<template id="bien_encabezado_tabla_detalle_movimiento">
+
+        <table style="border:1px solid black; width:100%">
+        <tr style=" height:25px; background-color:#d3d3d3" align="center">
+            
+            <td style="border:1px solid black; width:5%" >
+                <span style="font-size:12px; font-weight:700;">N°  </span>
+            </td>            
+            <td style="border:1px solid black; width:10%" >
+                <span style="font-size:12px; font-weight:700;">N° DEL BIEN </span>
+            </td>
+            
+            <td style="border:1px solid black; width:70%">
+                <span style="font-size:12px; font-weight:700">DESCRIPCIÓN DEL BIEN </span>
+            </td>
+            <td style="border:1px solid black; width:15%" >
+                <span style="font-size:12px; font-weight:700">SERIAL </span>
+            </td>
+        </tr>
+        </table>
+</template> 
+
+
+<template id="firma_movimiento">
+
+        <br/>   
+        <span style="font-size:14px; font-weight:700">Aprobación Del Movimiento De Los Bienes </span>
+        <br/>
+        <table style="border:1px solid black; width:100%">
+        <tr style=" height:80px" align="center">
+            <td style="border:1px solid black; width:33%" >
+            </td>
+            
+            <td style="border:1px solid black; width:33%">
+            </td>
+            <td style="border:1px solid black; width:34%" >
+            </td>
+        </tr>
+
+        <tr style="height:20px;" align="center">
+            <td style="border:1px solid black; width:33%" >
+                <span style="font-size:14px; font-weight:700;">Responsable Uso Cedente</span>
+            </td>
+            
+            <td style="border:1px solid black; width:33%">
+                <span style="font-size:14px; font-weight:700">Responsable Uso Receptor</span>
+            </td>
+            <td style="border:1px solid black; width:34%" >
+                <span style="font-size:14px; font-weight:700">Bienes Nacionales </span>
+            </td>
+        </tr>
+
+
+        </table>
+</template> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+</odoo>
+

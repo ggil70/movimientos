@@ -181,10 +181,11 @@
         <field name="arch" type="xml">
             <tree string="Movimiento de Bienes" decoration-danger="state=='2'">
                 <field name="tipo_movimiento_id"/>
-                 <field name="fecha_mov" />
+                <field name="fecha_mov" />
+                <field name="oficina_cedente" />
+                <field name="ofi_receptora" /> 
+                 
                  <field name="nro_acta" />
-                 <field name="fecha_acta" />
-                 <field name="analista_bienes" />                           
                 <field name="bienes_mov_deta_ids"/>
                 <field name="state"/>
 

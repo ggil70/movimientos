@@ -88,50 +88,6 @@
         <field name="view_mode">tree,form</field>
     </record>
     
-
-
-
-
-
-
-
-
-<!--
-****************Pesonal que Autoriza los Movimientos*******************
-
-    <record model="ir.ui.view" id="view_mov_autoriza_form">
-        <field name="name">mov_autoriza.form</field>
-        <field name="model">mov_autoriza</field>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <form string="mov_autoriza">
-            <group col="4" colspan="2">
-                <field name="autoriza_grupo" select="2"/>
-                <field name="autoriza_persona" select="2"/>
-            </group>
-            </form>
-        </field>
-    </record>
-    <record model="ir.ui.view" id="view_mov_autoriza_tree">
-        <field name="name">mov_autoriza.tree</field>
-        <field name="model">mov_autoriza</field>
-        <field name="type">tree</field>
-        <field name="arch" type="xml">
-            <tree string="mov_autoriza">
-                <field name="autoriza_grupo"/>
-                <field name="autoriza_persona"/>
-                
-            </tree>
-        </field>
-    </record>
-    <record model="ir.actions.act_window" id="action_mov_autoriza">
-        <field name="name">Personal que Autoriza los Movimientos</field>
-        <field name="res_model">mov_autoriza</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    
- -->   
 <!--
 
 **************** Movimientos*******************
@@ -241,18 +197,7 @@
                             </group>     
                           
                  
-                         <!--   
-                            <field name="bi_oficina_cedente"  domain = "[(('movimiento_id.cod_mov','!=','01'),('oficinas','=','bienes_id.oficinas_id')('movimiento_id.cod_mov','=','01'),('oficinas','=','13'))]" colspan="2" options="{'no_open':True}" select="0"/>
-                            <field name="bi_nombre"  colspan="4" attrs="{'invisible':True}" select="0"/>
-                          <field name="bi_resp_uso_cedente" colspan="4" options="{'no_open':True}" select="0"/>
-                            <field name="bi_fecha_inv" select="0"/> -->
-<!--
-                <field name="mov_apro_id"/>
-                 <field name="resp_uso_receptor" attrs="{'required': [('movimiento_codigo'),'in',('01','02','03','04','10','11','12')]}" select="0"/>
-                  <field name="ofi_receptora" attrs="{'required':['|', ('movimiento_codigo','=','01'),('movimiento_codigo','=','02'),
-                                   ('movimiento_codigo','=','03'),('movimiento_codigo','=','04'),('movimiento_codigo','=','10'),
-                                   ('movimiento_codigo','=','11'),('movimiento_codigo','=','12')]}" select="0"/>
--->
+
            
             </form>
         </field>
@@ -266,7 +211,7 @@
                 <field name="tipo_movimiento_id"/>
                  <field name="movimiento_codigo"/>
                  <field name="ofi_receptora" select="0" attrs="{'required':[('movimiento_codigo','in',('01','02','03'))],
-                                                       'invisible': [('movimiento_codigo','in',('04','05','06','07','08'))],'readonly':[('state','=','3')]}" options="{'no_open':True}" />
+                                                        'readonly':[('state','=','3')]}" options="{'no_open':True}" />
              
                             <field name="resp_uso_receptor" select="0" attrs="{'required':[('movimiento_codigo','in',('01','02','03'))],
                                                        'invisible': [('movimiento_codigo','in',('04','05','06','07','08'))],'readonly':[('state','=','3')]}" options="{'no_open':True}" />

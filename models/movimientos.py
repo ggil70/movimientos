@@ -157,6 +157,18 @@ class movimientos(models.Model):
     """Registra los movimientos"""
     _name = 'movimientos'
     _rec_name = 'tipo_movimiento_id'
+    
+    def fecha_actual(self):
+        today = fields.Datetime.now()
+        fecha = today.strftime('%d/%m/%Y')        
+        return fecha    
+
+    def fecha_formato(self, fecha_mov):
+        #today = fields.Datetime.now()
+        fecha = fecha_mov.strftime('%d/%m/%Y')        
+        return fecha     
+    
+    
     tipo_movimiento_id = fields.Many2one('tipo_movimiento','Tipo del Movimiento',required=True, 
                                           help='Registra el codigo de Vinculacion con los Tipos de Movimientos')
     categoria_movimiento_id = fields.Selection([('01','Inventario Inicial'),('02','Reasignación'),('03','Desincorporación')],'Categoria Movimiento',
@@ -329,22 +341,21 @@ class movimientos(models.Model):
                           }
                 registro.write(values)
                 
+
                 domain = [('id','=',registro.bienes_id.id)]            
                 recordset_aux= self.env['bienes'].search(domain)
                 for registro_aux in recordset_aux:
                     movi_deta_id = 0
-                    if registro_aux.movimiento_deta_id:
+                    if registro_aux.movimiento_deta_id:                        
                         movi_deta_id = int(registro_aux.movimiento_deta_id)
                         domain_movi = [('id','=',movi_deta_id)]         
                         recordset_movi = self.env['bienes_mov_deta_rel'].search(domain_movi)
                         for registro_movi in recordset_movi:
-                            #raise ValidationError('Encontradp deta_rel')
-                            #fecha = datetime.now()
                             values = {'bi_fecha_inv_final':self.fecha_mov}
                             registro_movi.write(values)
   
                         
-                for registro_aux in recordset_aux:   
+                for registro_aux in recordset_aux:
                     registro_aux.write({'bienes_ubica_id':self.ubica_id_receptor,
                                         'ubicacion_fisica_codigo':self.ubica_codigo_receptor,
                                         'bienes_piso':self.piso_receptor,
@@ -364,13 +375,13 @@ class movimientos(models.Model):
                                         'movimiento_deta_id':registro.id
                                      
                     })
-                mensaje = "El / Los Bienes fueron inventariado correctamente"  
-                warning = {
-                    'title': "Advertencia!",
-                    'message': mensaje,}
-                return {'warning': warning }
+                    
                 
-                                 
+            #mensaje = "El / Los Bienes fueron inventariado correctamente"  
+            #warning = {
+            #    'title': "Advertencia!",
+            #    'message': mensaje,}
+            return True
         else:
             raise ValidationError('No existen Bienes asociados al movimiento para der reasignado')
 

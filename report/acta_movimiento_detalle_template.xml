@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<report
+
+  id="action_report_acta_movimiento"
+  string="Acta Movimiento Bienes"
+  model="movimientos"
+  report_type="qweb-html"
+  name = "movimientos.acta_movimiento_detalle_template"
+  paperformat="movimientos.paperformat_acta_movimiento"
+  
+  
+  menu="True"
+/>
+<!--paperformat="movimientos..paperformat_acta_movimiento"-->
+              
+<template id="acta_movimiento_detalle_template">
+    <t t-call="web.html_container">
+    <!-- inicio de encabezado -->        
+        <!--<t t-set='linea' t-value='0'/>  Se activa para controlar las filas del reporte  -->
+        <t t-set='swPagina' t-value='0'/> 
+        <t t-foreach="docs" t-as="movimiento">
+            <t t-if='swPagina==1'>
+                <!--Salto de pagina cuando sean varias paginas -->
+                <div style='page-break-after: always;'></div>
+            </t>
+            <t t-if='swPagina==0'>
+                <!--Permite controlar los saltos de pagina--> 
+                <t t-set='swPagina' t-value='1'/>
+            </t>
+
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                <t t-set='swPagina' t-value='0'/> 
+                <div class="page">
+                    <t t-call="movimientos.encabezado_acta_movimiento"></t>
+                    <t t-call="movimientos.bien_encabezado_tabla_detalle_movimiento"></t>
+                    
+                        <t t-set='linea' t-value='0'/>
+                        <t t-set='nro' t-value='0'/>
+                        <t t-foreach="movimiento.bienes_mov_deta_ids" t-as="movimiento_detalle">
+                            <t t-set='linea' t-value='linea+ 1'/>
+                            <t t-set='nro' t-value='nro + 1'/>
+                            <table style="border:1px solid black; width:100%">
+                            <tr style=" height:50px" align="center">
+                                <td style="border:1px solid black; width:5%" >
+                                    <span style="font-size:11px;" t-esc="nro" />
+                                </td>
+                                
+                                
+                                <td style="border:1px solid black; width:10%" >
+                                    <span style="font-size:11px;" t-esc="movimiento_detalle.bienes_id.bienes_numbien" />
+                                </td>
+                                
+                                <td style="border:1px solid black; width:70%">
+                                    <span style="font-size:11px;" t-esc="movimiento_detalle.bienes_id.bienes_nombre" />
+                                </td>
+                                <td style="border:1px solid black; width:15%" >
+                                    <span style="font-size:11px;" t-esc="movimiento_detalle.bienes_id.bienes_serial" />
+                                </td>                                                                          
+                            </tr>
+                            </table>
+                            <t t-if='linea==12'>
+                                <div style='page-break-after: always;'></div>                                       
+                                <t t-set='linea' t-value='0'/>  
+                                <t t-call="movimientos.encabezado_acta_movimiento"></t>
+                                <t t-call="movimientos.bien_encabezado_tabla_detalle_movimiento"></t>
+                            </t>    
+                        </t>
+                        <t t-if='linea > 0'>
+                           <t t-if='linea &lt; 11'>
+                                <t t-call="movimientos.firma_movimiento"></t>
+                           </t>
+                           <t t-else="">
+                               <div style='page-break-after: always;'></div>
+                                <t t-call="movimientos.encabezado_acta_movimiento"></t>
+
+                                    
+                           </t>    
+                        </t>
+                        <t t-else="">
+                            <t t-call="movimientos.firma_movimiento"></t>
+                        </t>            
+                                    
+                                
+                                
+                                
+                                
+                            
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                </div>  <!-- div de page -->
+                </t>  <!-- Fin del external-layaut-->
+            </t>    <!-- Fin de Container interno-->
+        </t>  <!-- Fin del foreach -->   
+    </t> <!-- Fin container principal -->             
+</template>
+
+
+<record id="paperformat_acta_movimiento" model="report.paperformat">
+    <field name="name">European A4</field>
+    <field name="default" eval="True" />
+    <field name="format">A4</field>
+    <field name="page_height">0</field>
+    <field name="page_width">0</field>
+    <field name="orientation">Portrait</field>
+    <!--<field name="orientation">Landscape</field>-->
+    <field name="margin_top">45</field>
+    <field name="margin_bottom">20</field>
+    <field name="margin_left">5</field>
+    <field name="margin_right">5</field>
+    <field name="header_line" eval="False" />
+    <field name="header_spacing">25</field>
+    <field name="dpi">90</field>
+</record>
+
+
+</odoo>
+
